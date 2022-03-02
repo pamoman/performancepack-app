@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@config/*": ["config/*"],
+            "@public/*": ["public/*"],
+            "@data/*": ["data/*"],
+            "@utils": ["utils"],
+            "@components/*": ["components/*"],
+            "@graphql/*": ["graphql/*"],
+            "@themes/*": ["themes/*"],
+            "@styles/*": ["styles/*"],
+        }
+    }
+}
