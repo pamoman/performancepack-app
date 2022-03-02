@@ -4,9 +4,9 @@
 
 import PageController from './PageController';
 import PageBlockController from './PageBlockController';
-import Seo from './Seo';
-import Heading from './Heading';
-import Hero from './Hero';
+import { PamoSeo as Seo } from './Seo';
+import { PamoHeading as Heading } from './Heading';
+import { PamoHero as Hero } from './Hero';
 
 export {
     PageController,

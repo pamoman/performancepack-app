@@ -8,7 +8,7 @@ import { Grid, Typography } from '@mui/material';
 import SimpleReactLightbox, { SRLWrapper } from "simple-react-lightbox";
 import styles from './styles';
 
-const Gallery = ({ gallery, userSettings, userOptions }) => {
+const Gallery = ({ gallery, userOptions, userSettings = {} }) => {
     const settings = { ...defaultSettings.settings, ...userSettings };
     const defaultOptions = defaultSettings.options;
 
@@ -48,6 +48,20 @@ const Gallery = ({ gallery, userSettings, userOptions }) => {
                 </Grid>
             </SRLWrapper>
         </SimpleReactLightbox>
+    )
+};
+
+export const PamoGallery = (data) => {
+    const { images: { data: gallery }, settings, ...galleryOptions } = data;
+
+    const props = {
+        gallery,
+        userSettings: settings,
+        userOptions: galleryOptions
+    };
+
+    return (
+        <Gallery {...props} />
     )
 };
 

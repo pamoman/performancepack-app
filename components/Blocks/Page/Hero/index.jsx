@@ -56,4 +56,20 @@ const Hero = ({ heading, variant, formats, alternativeText, links, userSettings 
     )
 };
 
+export const PamoHero = (props) => {
+    const { image: { data: { attributes: heroImage } }, page_heading: heroHeading, links, settings, ...rest } = props;
+
+    props = {
+        ...heroImage,
+        ...heroHeading,
+        links,
+        userSettings: settings,
+        ...rest,
+    };
+
+    return (
+        <Hero {...props} />
+    )
+};
+
 export default Hero;

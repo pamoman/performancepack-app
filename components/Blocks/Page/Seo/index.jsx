@@ -5,7 +5,7 @@
 import Head from 'next/head';
 import { globals } from '@data/Global';
 
-const Seo = ({ title, description, url, image }) => {
+const Seo = ({ image, title, description, url }) => {
     const { header } = globals;
     const { formats } = image;
     const { url: imageUrl } = formats?.small || formats?.thumbnail || null;
@@ -18,6 +18,19 @@ const Seo = ({ title, description, url, image }) => {
             {url && <meta property="og:url" content={url} key="ogurl" />}
             {imageUrl && <meta property="og:image" content={`${process.env.NEXT_PUBLIC_API_URL}${imageUrl}`} key="ogimage" />}
         </Head>
+    )
+};
+
+export const PamoSeo = (props) => {
+    const { image: { data: { attributes: image } }, ...rest } = props;
+
+    props = {
+        image,
+        ...rest
+    };
+
+    return (
+        <Seo {...props} />
     )
 };
 

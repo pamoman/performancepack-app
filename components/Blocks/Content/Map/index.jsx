@@ -8,7 +8,7 @@ import { Box, Typography } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import styles from './styles';
 
-const Map = ({ label, lat, lng, userSettings }) => {
+const Map = ({ label, lat, lng, userSettings = {} }) => {
     const settings = { ...defaultSettings, ...userSettings };
 
     return (
@@ -30,6 +30,19 @@ const Map = ({ label, lat, lng, userSettings }) => {
             </Typography>
         </GoogleMapReact>
     </Box>
+    )
+};
+
+export const PamoMap = (data) => {
+    const { settings, ...rest } = data;
+
+    const props = {
+        userSettings: settings,
+        ...rest,
+    };
+
+    return (
+        <Map {...props} />
     )
 };
 

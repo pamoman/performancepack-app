@@ -79,4 +79,16 @@ const PDF = ({ url, caption, alternativeText }) => {
     )
 };
 
+export const PamoPDF = (data) => {
+    const { file: { data: { attributes: file } } } = data;
+
+    const props = {
+        ...file
+    };
+
+    return (
+        <PDF {...props} />
+    )
+};
+
 export default PDF;

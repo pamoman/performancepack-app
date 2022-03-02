@@ -6,7 +6,7 @@ import defaultSettings from './settings';
 import { TableContainer, Table as MuiTable, TableHead, TableBody, TableRow, TableCell, Paper } from '@mui/material';
 import styles from './styles';
 
-const Table = ({ userSettings, name, head, rows }) => {
+const Table = ({ name, head, rows, userSettings = {} }) => {
     const settings = { ...defaultSettings, ...userSettings };
 
     return (
@@ -44,6 +44,19 @@ const Table = ({ userSettings, name, head, rows }) => {
                 )}
             </MuiTable>
         </TableContainer>
+    )
+};
+
+export const PamoTable = (data) => {
+    const { settings, ...rest } = data;
+
+    const props = {
+        userSettings: settings,
+        ...rest,
+    };
+
+    return (
+        <Table {...props} />
     )
 };
 

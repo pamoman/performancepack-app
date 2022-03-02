@@ -12,4 +12,16 @@ const Heading = ({ heading, variant }) => {
     )
 };
 
+export const PamoHeading = (props) => {
+    const { ...rest } = props;
+
+    props = {
+        ...rest
+    };
+
+    return (
+        <Heading {...props} />
+    )
+};
+
 export default Heading;

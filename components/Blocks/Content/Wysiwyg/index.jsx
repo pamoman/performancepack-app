@@ -17,4 +17,17 @@ const Wysiwyg = ({ content }) => {
     )
 };
 
+export const PamoWysiwyg = (data) => {
+    const { content, ...rest } = data;
+
+    const props = {
+        content,
+        ...rest
+    };
+
+    return (
+        <Wysiwyg {...props} />
+    )
+};
+
 export default Wysiwyg;

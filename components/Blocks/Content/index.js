@@ -4,19 +4,19 @@
 
 import ContentController from './ContentController'
 import ContentBlockController from './ContentBlockController';
-import Heading from './Heading';
-import Image from './Image';
-import PDF from './PDF';
-import Slideshow from './Slideshow';
-import Gallery from './Gallery';
-import Stream from './Stream';
-import Video from './Video';
-import Wysiwyg from './Wysiwyg';
-import Company from './Company';
-import Map from './Map';
-import Table from './Table';
-import People, { PersonCard } from './People';
-import { Product } from './Ecommerce';
+import { PamoHeading as Heading } from './Heading';
+import { PamoImage as Image } from './Image';
+import { PamoPDF as PDF } from './PDF';
+import { PamoSlideshow as Slideshow } from './Slideshow';
+import { PamoGallery as Gallery } from './Gallery';
+import { PamoStream as Stream } from './Stream';
+import { PamoVideo as Video } from './Video';
+import { PamoWysiwyg as Wysiwyg } from './Wysiwyg';
+import { PamoCompany as Company } from './Company';
+import { PamoMap as Map } from './Map';
+import { PamoTable as Table } from './Table';
+import { PamoPeople as People, PamoStaff as Staff, PersonCard } from './People';
+import { PamoProduct as Product } from './Ecommerce';
 
 export {
     ContentController,
@@ -32,7 +32,8 @@ export {
     Company,
     Map,
     Table,
-    People
+    People,
+    Staff
 };
 
 export {

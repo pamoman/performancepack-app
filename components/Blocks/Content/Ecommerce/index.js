@@ -2,8 +2,9 @@
  * Ecommerce Blocks
  */
 
-import Product from './Product';
+import Product, { PamoProduct } from './Product';
 
 export {
-    Product
+    Product,
+    PamoProduct
 };

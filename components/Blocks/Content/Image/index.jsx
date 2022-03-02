@@ -7,7 +7,7 @@ import defaultSettings from './settings';
 import { Grid, Typography } from '@mui/material';
 import styles from './styles';
 
-const Image = ({ formats, caption, alternativeText, userSettings }) => {
+const Image = ({ formats, caption, alternativeText, userSettings = {} }) => {
     const { show_caption } = { ...defaultSettings, ...userSettings };
     const { url } = formats?.xlarge || formats?.large || formats?.medium || formats?.small;
 
@@ -31,6 +31,20 @@ const Image = ({ formats, caption, alternativeText, userSettings }) => {
         </Grid>
         :
         null
+    )
+};
+
+export const PamoImage = (data) => {
+    const { image: { data: { attributes: image } }, settings, ...rest } = data;
+
+    const props = {
+        ...image,
+        userSettings: settings,
+        ...rest
+    };
+
+    return (
+        <Image {...props} />
     )
 };
 
