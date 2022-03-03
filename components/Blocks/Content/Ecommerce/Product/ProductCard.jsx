@@ -4,6 +4,7 @@
 
 import { useState } from 'react';
 import NextImage from 'next/image';
+import { useBasket } from '@config/cookies';
 import { Grid, Box, Card, CardContent, CardMedia, CardActions, Typography, TextField, Button, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -14,10 +15,38 @@ const ProductCard = ({ id, product, settings }) => {
     const { name, description, price, image: { data: { attributes: image } } } = product || {};
     const { alternativeText, caption, formats } = image;
     const { url } = formats?.medium || formats?.small;
-
     const [ amount, setAmount ] = useState(0);
+    const [ basket, setBasket, removeBasket ] = useBasket();
 
-    console.log(product);
+    const updateAmount = (e) => {
+        const currentAmount = parseInt(e.target.value);
+    
+        !isNaN(currentAmount) && setAmount(currentAmount);
+    };
+
+    const updateBasket = () => {
+        const currentAmount = parseInt(amount);
+
+        if (!basket) {
+            const item = {
+                product,
+                amount: currentAmount
+            };
+
+            setBasket([item]);
+        } else {
+            const existingItem = basket.find(item => item.id === product.id);
+
+            if (existingItem) {
+                existingItem.amount += currentAmount;
+
+                setBasket(basket);
+            }
+        }
+
+        setAmount(0);
+    };
+
     return (
         <Card sx={styles.card}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -43,7 +72,7 @@ const ProductCard = ({ id, product, settings }) => {
                         type="number"
                         inputProps={{ min: "1", max: "100", step: "1" }}
                         value={amount}
-                        onChange={(e) => !isNaN(parseInt(e.target.value)) && setAmount(parseInt(e.target.value))}
+                        onChange={updateAmount}
                         required
                         variant="filled"
                     />
@@ -58,6 +87,7 @@ const ProductCard = ({ id, product, settings }) => {
                         type="submit"
                         variant="contained"
                         startIcon={<AddCircleIcon />}
+                        onClick={updateBasket}
                     >
                         Lägg till
                     </Button>
