@@ -27,8 +27,8 @@ const theme = createTheme({
             secondary: {
                 main: "rgb(255, 255, 255)",
                 background: {
-                    light: "rgb(249, 103, 45, 0.7)",
-                    main: "rgb(249, 103, 45, 1)",
+                    light: "rgb(46, 174, 52, 0.7)",
+                    main: "rgb(46, 174, 52, 1)",
                 },
             },
         },
@@ -432,6 +432,19 @@ export const globalStyle = {
             },
         },
     },
+    input: {
+        "&[type=number]": {
+            "-moz-appearance": "textfield",
+        },
+        "&::-webkit-outer-spin-button": {
+            "-webkit-appearance": "none",
+            margin: 0
+        },
+        "&::-webkit-inner-spin-button": {
+            "-webkit-appearance": "none",
+            margin: 0
+        }
+    }
 };
 
 export default createTheme(theme, overrides);
