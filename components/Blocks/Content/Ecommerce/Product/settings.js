@@ -3,6 +3,6 @@
  */
 
 export default {
-    show_price: false,
+    show_price: true,
     allow_purchase: true
 };

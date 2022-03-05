@@ -52,72 +52,76 @@ const ProductCard = ({ id, product, settings }) => {
 
     return (
         <Card sx={styles.card}>
-            <Box sx={{ display: "flex", flexDirection: "column", order: { xs: 2, sm: 1 }, flexGrow: 1 }}>
+            <Box sx={styles.cardMain}>
                 <CardHeader
-                    sx={{ display: "flex" }}
+                    sx={styles.cardHeader}
                     title={
-                        <Typography component="h6" variant="h5" color="primary.main">
+                        <Typography component="h3" variant="h4" color="primary.main">
                             {name}
                         </Typography>
                     }
                     subheader={
-                        <Typography variant="subtitle1" component="div" color="primary.main">
+                        <Typography component="div" variant="subtitle1" color="primary.main" noWrap>
                             {description}
                         </Typography>
                     }
                 />
 
-                <CardContent sx={{ display: 'flex', justifyContent: "center", alignItems: 'center', flexGrow: 1, p: 0 }}>
-                    <Typography variant="h2" color="primary.main">
-                        {price}:-
-                    </Typography>
+                <CardContent sx={styles.cardContent}>
+                    {settings.show_price &&
+                        <Typography component="h3" variant="h1" color="primary.main">
+                            {price}:-
+                        </Typography>
+                    }
                 </CardContent>
+                
+                {settings.allow_purchase &&
+                    <CardActions sx={styles.cardActions}>
+                        <Box sx={styles.cardInputContainer}>
+                            <IconButton aria-label="remove" color="primary">
+                                <RemoveIcon onClick={() => amount > 0 && setAmount(amount - 1)} />
+                            </IconButton>
 
-                <CardActions sx={{ display: "flex", flexDirection: "column", p: 2 }}>
-                    <Box sx={{ mb: 2, display: "flex", alignItems: "center" }}>
-                        <IconButton aria-label="remove" color="primary">
-                            <RemoveIcon onClick={() => amount > 0 && setAmount(amount - 1)} />
-                        </IconButton>
+                            <TextField
+                                sx={styles.cardInput}
+                                id="product-amount"
+                                type="number"
+                                size="small"
+                                inputProps={{ min: "1", max: "100", step: "1" }}
+                                value={amount}
+                                onChange={updateAmount}
+                                required
+                                variant="outlined"
+                            />
 
-                        <TextField
-                            sx={styles.textfield}
-                            id="product-amount"
-                            type="number"
+                            <IconButton aria-label="add" color="primary">
+                                <AddIcon onClick={() => setAmount(amount + 1)} />
+                            </IconButton>
+                        </Box>
+
+                        <Button
+                            sx={styles.addButton}
+                            color="primary"
+                            type="submit"
                             size="small"
-                            inputProps={{ min: "1", max: "100", step: "1" }}
-                            value={amount}
-                            onChange={updateAmount}
-                            required
-                            variant="outlined"
-                        />
-
-                        <IconButton aria-label="add" color="primary">
-                            <AddIcon onClick={() => setAmount(amount + 1)} />
-                        </IconButton>
-                    </Box>
-
-                    <Button
-                        sx={styles.greenButton}
-                        color="primary"
-                        type="submit"
-                        size="small"
-                        variant="contained"
-                        startIcon={<AddCircleIcon />}
-                        onClick={() => amount && updateBasket()}
-                    >
-                        Lägg till
-                    </Button>
-                </CardActions>
+                            variant="contained"
+                            startIcon={<AddCircleIcon />}
+                            onClick={() => amount && updateBasket()}
+                        >
+                            Lägg till
+                        </Button>
+                    </CardActions>
+                }
             </Box>
             
-            <CardMedia sx={{ display: "flex", flexDirection: "column", order: { xs: 1, sm: 2 }, width: { xs: "100%", sm: "60%" }, height: "100%" }}>
+            <CardMedia sx={styles.cardMedia}>
                 <NextImage
                     src={`${process.env.NEXT_PUBLIC_API_URL}${url}`}
                     alt={alternativeText}
                     layout='responsive'
                     objectFit='cover'
                     width={1}
-                    height={1}
+                    height={"100%"}
                 />
             </CardMedia>
         </Card>
