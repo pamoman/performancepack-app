@@ -1,0 +1,5 @@
+/*
+ * Checkout - Settings
+ */
+
+export default {};

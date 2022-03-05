@@ -17,6 +17,7 @@ import { PamoMap as Map } from './Map';
 import { PamoTable as Table } from './Table';
 import { PamoPeople as People, PamoStaff as Staff, PersonCard } from './People';
 import { PamoProduct as Product } from './Ecommerce';
+import { PamoCheckout as Checkout } from './Ecommerce';
 
 export {
     ContentController,
@@ -37,7 +38,8 @@ export {
 };
 
 export {
-    Product
+    Product,
+    Checkout
 };
 
 export {

@@ -45,12 +45,12 @@ const styles = {
         flexDirection: "column",
         p: 2
     },
-    cardInputContainer: {
+    quantityContainer: {
         mb: 2,
         display: "flex",
         alignItems: "center",
     },
-    cardInput: {
+    quantity: {
         backgroundColor: "primary.main",
         "& input": {
             fontWeight: "bold",

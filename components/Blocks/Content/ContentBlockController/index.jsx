@@ -7,7 +7,8 @@ import { Box } from '@mui/material';
 
 const PamoContentBlockController = ({ __typename, ...rest }, index) => {
     const blocks = {
-        'ComponentEcommerceProducts': { Block: Content.Product, props: rest },
+        /* 'ComponentEcommerceProducts': { Block: Content.Product, props: rest },
+        'ComponentEcommerceCheckout': { Block: Content.Checkout, props: rest }, */
         'ComponentContentHeading': { Block: Content.Heading, props: rest },
         'ComponentContentWysiwyg': { Block: Content.Wysiwyg, props: rest },
         'ComponentContentImage': { Block: Content.Image, props: rest },

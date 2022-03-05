@@ -15,39 +15,43 @@ const ProductCard = ({ id, product, settings }) => {
     const { name, description, price, image: { data: { attributes: image } } } = product || {};
     const { alternativeText, caption, formats } = image;
     const { url } = formats?.medium || formats?.small;
-    const [ amount, setAmount ] = useState(0);
+    const [ quantity, setQuantity ] = useState(0);
     const [ basket, setBasket ] = useBasket();
 
-    const updateAmount = (e) => {
-        const currentAmount = parseInt(e.target.value);
+    const updateQuantity = (qty) => {
+        const parsedQuantity = parseInt(qty);
     
-        !isNaN(currentAmount) && setAmount(currentAmount);
+        if (!isNaN(parsedQuantity)) {
+            setQuantity(parsedQuantity);
+        }
     };
 
     const updateBasket = () => {
-        const currentAmount = parseInt(amount);
+        const currentQuantity = parseInt(quantity);
 
         if (!basket) {
             setBasket([{
+                id,
                 product,
-                amount: currentAmount
+                quantity: currentQuantity
             }]);
         } else {
-            const existingItem = basket.find(item => item.id === product.id);
+            const existingItem = basket.find(item => item.id === id);
 
             if (existingItem) {
-                existingItem.amount += currentAmount;
+                existingItem.quantity += currentQuantity;
             } else {
                 basket.push({
+                    id,
                     product,
-                    amount: currentAmount
+                    quantity: currentQuantity
                 })
             }
 
             setBasket(basket);
         }
 
-        setAmount(0);
+        setQuantity(0);
     };
 
     return (
@@ -77,25 +81,25 @@ const ProductCard = ({ id, product, settings }) => {
                 
                 {settings.allow_purchase &&
                     <CardActions sx={styles.cardActions}>
-                        <Box sx={styles.cardInputContainer}>
+                        <Box sx={styles.quantityContainer}>
                             <IconButton aria-label="remove" color="primary">
-                                <RemoveIcon onClick={() => amount > 0 && setAmount(amount - 1)} />
+                                <RemoveIcon onClick={() => quantity > 0 && updateQuantity(quantity - 1)} />
                             </IconButton>
 
                             <TextField
-                                sx={styles.cardInput}
-                                id="product-amount"
+                                sx={styles.quantity}
+                                id="product-quantity"
                                 type="number"
                                 size="small"
                                 inputProps={{ min: "1", max: "100", step: "1" }}
-                                value={amount}
-                                onChange={updateAmount}
+                                value={quantity}
+                                onChange={(e) => updateQuantity(e.target.value)}
                                 required
                                 variant="outlined"
                             />
 
                             <IconButton aria-label="add" color="primary">
-                                <AddIcon onClick={() => setAmount(amount + 1)} />
+                                <AddIcon onClick={() => updateQuantity(quantity + 1)} />
                             </IconButton>
                         </Box>
 
@@ -106,7 +110,7 @@ const ProductCard = ({ id, product, settings }) => {
                             size="small"
                             variant="contained"
                             startIcon={<AddCircleIcon />}
-                            onClick={() => amount && updateBasket()}
+                            onClick={() => quantity && updateBasket()}
                         >
                             Lägg till
                         </Button>
