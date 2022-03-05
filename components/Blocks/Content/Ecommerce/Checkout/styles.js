@@ -3,7 +3,7 @@
  */
 
 const styles = {
-    table: {
+    card: {
         whiteSpace: "nowrap",
         overflowX: "scroll",
         head: {
@@ -28,6 +28,7 @@ const styles = {
         quantity: {
             backgroundColor: "primary.main",
             "& input": {
+                p: 1,
                 fontWeight: "bold",
                 textAlign: "center"
             }

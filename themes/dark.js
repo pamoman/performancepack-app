@@ -307,6 +307,16 @@ const overrides = {
                 },
             },
         },
+        MuiCardContent: {
+            styleOverrides: {
+                root: {
+                    padding: 16,
+                    "&:last-child": {
+                        padding: 16
+                    }
+                }
+            }
+        }
     },
 };
 

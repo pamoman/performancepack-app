@@ -38,7 +38,7 @@ const CheckoutItem = ({ id, product, quantity }) => {
 
     return (
         <Card sx={{ display: "flex", backgroundColor: "background.dark", color: "primary.main" }}>
-            <CardMedia>
+            <CardMedia sx={{ width: 150, height: 150 }}>
                 <NextImage
                     src={`${process.env.NEXT_PUBLIC_API_URL}${url}`}
                     alt={alternativeText}
@@ -52,10 +52,10 @@ const CheckoutItem = ({ id, product, quantity }) => {
             <CardContent sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
                 <Typography component="div" variant="h6">{name}</Typography>
                 <Typography component="div" variant="subtitle">{description}</Typography>
-                <Typography sx={{ mt: 2 }} component="div" variant="h4">{price}:-</Typography>
+                <Typography sx={{ mt: 2 }} component="div" variant="h4">{price} kr</Typography>
             </CardContent>
 
-            <CardActions sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+            <CardActions sx={{ p: 2, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                 <Typography sx={{ mb: 1 }} variant="button" align="center">Antal</Typography>
 
                 <Box sx={{ display: "flex", flexDirection: "row" }}>
@@ -64,7 +64,7 @@ const CheckoutItem = ({ id, product, quantity }) => {
                     </IconButton>
 
                     <TextField
-                        sx={styles.table.quantity}
+                        sx={styles.card.quantity}
                         id="product-quantity"
                         type="number"
                         size="small"
@@ -81,9 +81,9 @@ const CheckoutItem = ({ id, product, quantity }) => {
                 </Box>
             </CardActions>
 
-            <CardContent sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                <Typography sx={{ mb: 1 }} variant="button" align="center">Delsumma</Typography>
-                <Typography component="div" variant="h5">{quantity * price}:-</Typography>
+            <CardContent sx={{ width: "20%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                <Typography sx={{ mb: 1 }} variant="button" align="center">Totalt</Typography>
+                <Typography component="div" variant="h4">{quantity * price} kr</Typography>
             </CardContent>
         </Card>
     )
