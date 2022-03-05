@@ -14,28 +14,14 @@ import styles from './styles';
 const Checkout = ({}) => {
     const [ basket ] = useBasket();
 
-    console.log(basket);
     return (
-        <>
-            <TableContainer component={Paper}>
-                <Table sx={styles.table} aria-label="Checkout">
-                    <TableHead sx={styles.table.head}>
-                        <TableRow sx={styles.table.row.header}>
-                            <TableCell width="30%">Produkt</TableCell>
-                            <TableCell align="center" width="15%">Pris</TableCell>
-                            <TableCell align="center" width="40%">Antal</TableCell>
-                            <TableCell align="center" width="15%">Total</TableCell>
-                        </TableRow>
-                    </TableHead>
-
-                    <TableBody sx={styles.table.body}>
-                        {basket && basket.length > 0 && basket.map(item => (
-                            <CheckoutItem {...item} />
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </>
+        <Grid container justifyContent="center" alignItems="center" spacing={4}>
+            {basket && basket.length > 0 && basket.map(item => (
+                <Grid item xs={12}>
+                    <CheckoutItem {...item} />
+                </Grid>
+            ))}
+        </Grid>
     )
 };
 
