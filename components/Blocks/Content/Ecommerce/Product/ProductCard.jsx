@@ -4,53 +4,49 @@
 
 import { useState } from 'react';
 import NextImage from 'next/image';
-import { useBasket } from '@config/cookies';
 import { Box, Card, CardHeader, CardContent, CardMedia, CardActions, Typography, TextField, Button, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import styles from './styles';
 
-const ProductCard = ({ id, product, settings }) => {
+const ProductCard = ({ basket, setBasket, settings, ...rest }) => {
+    const { id, attributes: product } = rest;
     const { name, description, price, image: { data: { attributes: image } } } = product || {};
-    const { alternativeText, caption, formats } = image;
+    const { alternativeText, formats } = image;
     const { url } = formats?.medium || formats?.small;
     const [ quantity, setQuantity ] = useState(0);
-    const [ basket, setBasket ] = useBasket();
 
     const updateQuantity = (qty) => {
-        const parsedQuantity = parseInt(qty);
+        const parsedQty = parseInt(qty);
     
-        if (!isNaN(parsedQuantity)) {
-            setQuantity(parsedQuantity);
+        if (!isNaN(parsedQty)) {
+            setQuantity(parsedQty);
         }
     };
 
-    const updateBasket = () => {
-        const currentQuantity = parseInt(quantity);
+    const updateBasket = (qty) => {
+        const parsedQty = parseInt(qty);
 
-        if (!basket) {
-            setBasket([{
-                id,
-                product,
-                quantity: currentQuantity
-            }]);
+        const itemIndex = basket.findIndex(item => item.id === id);
+
+        if (itemIndex !== -1) {
+            basket[itemIndex].quantity += parsedQty;
         } else {
-            const existingItem = basket.find(item => item.id === id);
+            const newItem = {
+                id,
+                quantity: parsedQty,
+                name,
+                description,
+                price,
+                url,
+                alternativeText
+            };
 
-            if (existingItem) {
-                existingItem.quantity += currentQuantity;
-            } else {
-                basket.push({
-                    id,
-                    product,
-                    quantity: currentQuantity
-                })
-            }
-
-            setBasket(basket);
+            basket.push(newItem);
         }
 
+        setBasket(basket);
         setQuantity(0);
     };
 
@@ -110,7 +106,7 @@ const ProductCard = ({ id, product, settings }) => {
                             size="small"
                             variant="contained"
                             startIcon={<AddCircleIcon />}
-                            onClick={() => quantity && updateBasket()}
+                            onClick={() => quantity && updateBasket(quantity)}
                         >
                             Lägg till
                         </Button>

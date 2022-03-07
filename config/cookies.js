@@ -2,6 +2,8 @@
  * Cookie
  */
 
+/* Important! - Max cookie size is 4k (4000B) */
+
 import { useCookies } from 'react-cookie';
 
 export const BASKET = "basket";

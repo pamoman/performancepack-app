@@ -4,35 +4,59 @@
 
 const styles = {
     card: {
-        whiteSpace: "nowrap",
-        overflowX: "scroll",
-        head: {
-            backgroundColor: "background.dark",
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        backgroundColor: "background.dark",
+        color: "primary.main"
+    },
+    part: {
+        one: {
+            flexGrow: 1,
+            display: "flex"
         },
-        body: {
-            backgroundColor: "background.light",
+        two: {
+            display: "flex"
+        }
+    },
+    cardMedia: {
+        width: 150,
+        height: 150
+    },
+    cardContent: {
+        product: {
+            display: "flex",
+            flexDirection: "column"
         },
-        row: {
-            header: {
-                "& th": {
-                    fontWeight: "bold",
-                    color: "primary.main",
-                }
-            },
-            data: {
-                "& td": {
-                    color: "primary.main",
-                }
-            }
+        price: {
+            width: 175,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center"
+        }
+    },
+    cardActions: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        width: 175,
+        p: 2,
+    },
+    input: {
+        backgroundColor: "primary.main",
+        "& input": {
+            p: 1,
+            fontWeight: "bold",
+            textAlign: "center"
         },
-        quantity: {
-            backgroundColor: "primary.main",
-            "& input": {
-                p: 1,
-                fontWeight: "bold",
-                textAlign: "center"
-            }
-        },
+    },
+    label: {
+        mb: 1
+    },
+    quantity: {
+        display: "flex"
     }
 };
 

@@ -2,6 +2,7 @@
  * Content Block - Product
  */
 
+import { useBasket } from '@config/storage';
 import ProductCard from './ProductCard';
 import { Grid } from '@mui/material';
 import defaultSettings from './settings';
@@ -9,12 +10,18 @@ import styles from './styles';
 
 const Product = ({ products, userSettings = {} }) => {
     const settings = { ...defaultSettings, ...userSettings };
+    const { basket, setBasket } = useBasket();
 
     return (
         <Grid container justifyContent="center" alignItems="center" spacing={4}>
             {products.map(product => (
-                <Grid item xs={12} lg={products.length > 1 && 6}>
-                    <ProductCard id={product?.id} product={product?.attributes} settings={settings} />
+                <Grid key={product.id} item xs={12}>
+                    <ProductCard
+                        basket={basket}
+                        setBasket={setBasket}
+                        settings={settings}
+                        {...product}
+                    />
                 </Grid>
             ))}
         </Grid>
