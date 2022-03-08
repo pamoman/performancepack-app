@@ -2,18 +2,27 @@
  * Storage
  */
 
+import { useState, useEffect } from "react";
+
 const BASKET = "basket";
 
 export const useBasket = () => {
     if (typeof window !== "undefined") {
-        const basket = localStorage.getItem(BASKET);
+        const [basket, setBasket] = useState(() => {
+            const data = localStorage.getItem(BASKET);
+            const value = JSON.parse(data);
 
-        const setBasket = (basket) => localStorage.setItem(BASKET, JSON.stringify(basket));
+            return value || [];
+        });
 
-        const removeBasket = () => localStorage.removeItem(BASKET);
+        useEffect(() => {
+            const data = JSON.stringify(basket);
 
-        return { basket: JSON.parse(basket) || [], setBasket, removeBasket };
+            localStorage.setItem(BASKET, data);
+        }, [basket]);
+
+        return [ basket, setBasket ];
     }
 
-    return {};
+    return [];
 };

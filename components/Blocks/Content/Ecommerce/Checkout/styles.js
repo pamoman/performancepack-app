@@ -4,60 +4,86 @@
 
 const styles = {
     card: {
-        width: "100%",
         display: "flex",
-        flexDirection: "row",
+        flexDirection: { xs: "column", md: "row" },
         backgroundColor: "background.dark",
-        color: "primary.main"
+        color: "primary.main",
     },
-    part: {
-        one: {
-            flexGrow: 1,
-            display: "flex"
-        },
-        two: {
-            display: "flex"
-        }
-    },
-    cardMedia: {
-        width: 150,
-        height: 150
-    },
-    cardContent: {
-        product: {
-            display: "flex",
-            flexDirection: "column"
-        },
-        price: {
+    partOne: {
+        flexGrow: 1,
+        display: "flex",
+        cardMedia: {
+            order: { xs: 2, md: 1 },
             width: 175,
+            height: 175,
+            "& .basket-image": {
+                borderBottomLeftRadius: { xs: 10, md: "inherit" },
+            }
+        },
+        cardContent: {
+            display: "flex",
+            flexDirection: "column",
+            order: { xs: 1, md: 2 },
+            flexGrow: 1
+        },
+    },
+    partTwo: {
+        display: "flex",
+        cardActions: {
+            display: "flex",
+            flexGrow: 1,
+            p: 2,
+        },
+        cardContent: {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
+            width: 175,
+            "& div": {
+                width: "100%",
+                textAlign: "center"
+            }
+        },
+    },
+    summary: {
+        cardHeader: {
+            display: "flex",
+            flexGrow: 1,
+        },
+        cardActions: {
+            display: "flex",
+            flexGrow: 1,
+            p: 2,
+        },
+        cardContent: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: { xs: "flex-end", md: "center" },
+            width: 175,
+            "& div": {
+                width: "100%",
+                textAlign: "center"
+            }
         }
     },
-    cardActions: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        width: 175,
-        p: 2,
-    },
-    input: {
-        backgroundColor: "primary.main",
-        "& input": {
-            p: 1,
-            fontWeight: "bold",
-            textAlign: "center"
+    quantity: {
+        chooser: {
+            display: "flex"
+        },
+        textfield: {
+            backgroundColor: "primary.main",
+            "& input": {
+                p: 1,
+                fontWeight: "bold",
+                textAlign: "center"
+            },
         },
     },
     label: {
         mb: 1
     },
-    quantity: {
-        display: "flex"
-    }
 };
 
 export default styles;

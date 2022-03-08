@@ -10,11 +10,11 @@ import styles from './styles';
 
 const Product = ({ products, userSettings = {} }) => {
     const settings = { ...defaultSettings, ...userSettings };
-    const { basket, setBasket } = useBasket();
+    const [ basket, setBasket ] = useBasket();
 
     return (
         <Grid container justifyContent="center" alignItems="center" spacing={4}>
-            {products.map(product => (
+            {products && products.map(product => (
                 <Grid key={product.id} item xs={12}>
                     <ProductCard
                         basket={basket}

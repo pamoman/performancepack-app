@@ -29,7 +29,7 @@ const Gallery = ({ gallery, userOptions, userSettings = {} }) => {
                         const url = formats?.large?.url || null;
 
                         return url && (
-                            <Grid key={`gallery-image-${i}`} sx={styles.imageContainer} item xs={12} md={6} lg={4} xl={3}>
+                            <Grid key={`gallery-image-${i}`} sx={styles.imageContainer} item xs={12} md={6} xl={3}>
                                 <Image 
                                     src={`${process.env.NEXT_PUBLIC_API_URL}${url}`}
                                     alt={alternativeText}
