@@ -5,7 +5,7 @@
 import { useState } from 'react';
 import { useBasket } from '@config/storage';
 import CheckoutItem from './CheckoutItem';
-import { Box, Typography, Divider, Card, CardHeader, Avatar, CardContent, CardMedia, CardActions, IconButton, TextField } from '@mui/material';
+import { Box, Typography, Divider, Tooltip, Card, CardHeader, Avatar, CardContent, CardMedia, CardActions, IconButton, TextField } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -51,11 +51,13 @@ const CheckoutSummary = ({ basket = [], setBasket }) => {
             <Divider sx={styles.divider.horizontal} flexItem orientation="horizontal" />
             
             {basket && basket.length > 0 &&
-                <CardActions sx={styles.cardActions} onClick={() => setBasket([])}>
-                    <IconButton aria-label="clear" color="error">
-                        <ClearIcon />
-                    </IconButton>
-                </CardActions>
+                <Tooltip title="Rensa kundvagnen">
+                    <CardActions sx={styles.cardActions} onClick={() => setBasket([])}>
+                        <IconButton aria-label="clear" color="error">
+                            <ClearIcon />
+                        </IconButton>
+                    </CardActions>
+                </Tooltip>
             }
         </Card>
     )

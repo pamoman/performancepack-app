@@ -4,7 +4,7 @@
 
 import NextImage from 'next/image';
 import { useState } from 'react';
-import { Box, Typography, Divider, Card, CardHeader, CardContent, CardMedia, CardActions, IconButton, TextField } from '@mui/material';
+import { Box, Typography, Divider, Tooltip, Card, CardContent, CardMedia, CardActions, IconButton, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -89,11 +89,13 @@ const CheckoutItem = ({ basket, setBasket, ...rest }) => {
             <Divider sx={styles.divider.vertical} flexItem orientation="vertical" />
             <Divider sx={styles.divider.horizontal} flexItem orientation="horizontal" />
 
-            <CardActions sx={styles.cardActions} onClick={() => updateQuantity(0)}>
-                <IconButton aria-label="clear" color="error">
-                    <ClearIcon />
-                </IconButton>
-            </CardActions>
+            <Tooltip title="Ta bort produkten">
+                <CardActions sx={styles.cardActions} onClick={() => updateQuantity(0)}>
+                    <IconButton aria-label="clear" color="error">
+                        <ClearIcon />
+                    </IconButton>
+                </CardActions>
+            </Tooltip>
         </Card>
     )
 };
