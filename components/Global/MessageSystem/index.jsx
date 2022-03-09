@@ -3,16 +3,14 @@
  */
 
 import { useMessage } from '@components/Contexts';
-import { Snackbar } from '@mui/material';
-import MuiAlert from '@mui/material/Alert';
+import { Stack, Box, Snackbar } from '@mui/material';
+import { Alert as MuiAlert, AlertTitle } from '@mui/material';
 import styles from './styles';
 
 const MessageSystem = () => {
-    const messageContext = useMessage(),
-          open = messageContext.message.open,
-          text = messageContext.message.text,
-          severity = messageContext.message.severity,
-          setMessage = messageContext.setMessage;
+    const messageContext = useMessage();
+    const { message, setMessage } = messageContext;
+    const { open, severity, title = severity, text } = message;
     
     const Alert = (props) => {
         return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -24,16 +22,22 @@ const MessageSystem = () => {
     };
 
     return (
-        <Snackbar
-            sx={styles.messageContainer}
-            open={open}
-            autoHideDuration={5000}
-            onClose={errorClose}
-        >
-            <Alert sx={styles.message} onClose={errorClose} severity={severity}>
-                {text}
-            </Alert>
-        </Snackbar>
+        <Stack spacing={2}>
+            <Snackbar
+                sx={styles.snackBar}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                open={open}
+                autoHideDuration={5000}
+                onClose={errorClose}
+            >
+                <Box>
+                    <Alert sx={styles.alert} onClose={errorClose} severity={severity}>
+                        <AlertTitle>{title && title.toUpperCase()}</AlertTitle>
+                            {text}
+                    </Alert>
+                </Box>
+            </Snackbar>
+        </Stack>
     );
 };
 

@@ -3,14 +3,11 @@
  */
 
 const styles = {
-    messageContainer: {
-        width: "75%",
+    snackBar: {
         bottom: "80px",
-        margin: "auto",
         marginBottom: "2rem",
     },
-    message: {
-        width: "100%",
+    alert: {
         fontWeight: "bold"
     }
 };

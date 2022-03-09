@@ -4,6 +4,7 @@
 
 import { useState } from 'react';
 import NextImage from 'next/image';
+import { useMessage } from '@components/Contexts';
 import { Box, Card, CardHeader, CardContent, CardMedia, CardActions, Typography, TextField, Button, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -16,6 +17,8 @@ const ProductCard = ({ basket, setBasket, settings, ...rest }) => {
     const { alternativeText, formats } = image;
     const { url } = formats?.medium || formats?.small;
     const [ quantity, setQuantity ] = useState(0);
+    const messageContext = useMessage();
+    const { setMessage } = messageContext;
 
     const updateQuantity = (qty) => {
         const parsedQty = parseInt(qty);
@@ -48,6 +51,8 @@ const ProductCard = ({ basket, setBasket, settings, ...rest }) => {
 
         setBasket(basket);
         setQuantity(0);
+
+        setMessage({ open: true, title: "Klart!", text: `Lagt till ${qty}st ${name} till din kundvagn!`, severity: "success" });
     };
 
     return (
