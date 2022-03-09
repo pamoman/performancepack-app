@@ -14,6 +14,10 @@ const styles = {
         backgroundColor: "background.dark",
         color: "primary.main",
     },
+    cardHeader: {
+        display: "flex",
+        flexGrow: 1,
+    },
     product: {
         flexGrow: 1,
         display: "flex",
@@ -55,8 +59,16 @@ const styles = {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            alignItems: "center",
+            alignItems: { xs: "flex-end", md: "center" },
             width: { xs: "inherit", md: image.width },
+        },
+    },
+    checkout: {
+        display: "flex",
+        purchase: {
+            display: "flex",
+            flexGrow: 1,
+            p: 2,
         },
     },
     cardActions: {
@@ -72,31 +84,6 @@ const styles = {
                 color: "primary.main"
             }
         },
-    },
-    summary: {
-        cardHeader: {
-            display: "flex",
-            flexGrow: 1,
-        },
-        cardActions: {
-            display: "flex",
-            flexGrow: 1,
-            p: 2,
-        },
-        cardContent: {
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: { xs: "flex-end", md: "center" },
-            width: image.width,
-            "& div": {
-                width: "100%",
-                textAlign: "center"
-            }
-        },
-        basket: {
-            display: "flex"
-        }
     },
     label: {
         mb: 1,

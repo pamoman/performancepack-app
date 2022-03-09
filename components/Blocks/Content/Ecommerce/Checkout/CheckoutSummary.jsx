@@ -23,7 +23,7 @@ const CheckoutSummary = ({ basket = [], setBasket }) => {
     return (
         <Card sx={styles.card}>
             <CardHeader
-                sx={styles.summary.cardHeader}
+                sx={styles.cardHeader}
                 avatar={
                     <Avatar>
                         <ShoppingBasketIcon fontSize="large" />
@@ -37,11 +37,11 @@ const CheckoutSummary = ({ basket = [], setBasket }) => {
                 }
             />
 
-            <Box sx={styles.summary.basket}>
-                <CardActions sx={styles.summary.cardActions}>
-                </CardActions>
+            <Box sx={styles.checkout}>
+                <Box sx={styles.checkout.purchase}>
+                </Box>
 
-                <CardContent sx={styles.summary.cardContent}>
+                <CardContent sx={styles.basket.cardContent}>
                     <Typography sx={styles.label} component="div" variant="button" align="center" noWrap>Summa</Typography>
                     <Typography component="div" variant="h4" noWrap>{sum} kr</Typography>
                 </CardContent>
@@ -49,12 +49,14 @@ const CheckoutSummary = ({ basket = [], setBasket }) => {
 
             <Divider sx={styles.divider.vertical} flexItem orientation="vertical" />
             <Divider sx={styles.divider.horizontal} flexItem orientation="horizontal" />
-
-            <CardActions sx={styles.cardActions} onClick={() => updateQuantity(0)}>
-                <IconButton aria-label="clear" color="error">
-                    <ClearIcon />
-                </IconButton>
-            </CardActions>
+            
+            {basket && basket.length > 0 &&
+                <CardActions sx={styles.cardActions} onClick={() => setBasket([])}>
+                    <IconButton aria-label="clear" color="error">
+                        <ClearIcon />
+                    </IconButton>
+                </CardActions>
+            }
         </Card>
     )
 };

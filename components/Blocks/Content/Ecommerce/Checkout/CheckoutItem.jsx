@@ -82,7 +82,7 @@ const CheckoutItem = ({ basket, setBasket, ...rest }) => {
 
                 <CardContent sx={styles.basket.cardContent}>
                     <Typography sx={styles.label} component="div" variant="button" align="center" noWrap>Totalt</Typography>
-                    <Typography component="div" variant="h4" noWrap>{itemQuantity * price} kr</Typography>
+                    <Typography component="div" variant="h5" noWrap>{itemQuantity * price} kr</Typography>
                 </CardContent>
             </Box>
 
