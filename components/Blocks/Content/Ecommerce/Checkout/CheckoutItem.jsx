@@ -4,7 +4,7 @@
 
 import NextImage from 'next/image';
 import { useState } from 'react';
-import { Box, Typography, Card, CardHeader, CardContent, CardMedia, CardActions, IconButton, TextField } from '@mui/material';
+import { Box, Typography, Divider, Card, CardHeader, CardContent, CardMedia, CardActions, IconButton, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -33,8 +33,8 @@ const CheckoutItem = ({ basket, setBasket, ...rest }) => {
 
     return (
         <Card sx={styles.card}>
-            <Box sx={styles.partOne}>
-                <CardMedia sx={styles.partOne.cardMedia}>
+            <Box sx={styles.product}>
+                <CardMedia sx={styles.product.cardMedia}>
                     <NextImage
                         src={`${process.env.NEXT_PUBLIC_API_URL}${url}`}
                         alt={alternativeText}
@@ -46,55 +46,54 @@ const CheckoutItem = ({ basket, setBasket, ...rest }) => {
                     />
                 </CardMedia>
 
-                <CardContent sx={styles.partOne.cardContent}>
+                <CardContent sx={styles.product.cardContent}>
                     <Typography component="div" variant="h6">{name}</Typography>
                     <Typography component="div" variant="subtitle">{description}</Typography>
                     <Typography sx={{ mt: 2 }} component="div" variant="h4">{price} kr</Typography>
                 </CardContent>
             </Box>
 
-            <Box sx={styles.partTwo}>
-                <CardActions sx={styles.partTwo.cardActions}>
-                    <Box sx={styles.action}>
-                        <Typography sx={styles.label} component="div" variant="button" align="center">Radera</Typography>
-
-                        <IconButton aria-label="clear" color="error">
-                            <ClearIcon onClick={() => updateQuantity(0)} />
-                        </IconButton>
-                    </Box>
-
-                    <Box sx={styles.quantity}>
+            <Box sx={styles.basket}>
+                <Box sx={styles.basket.quantity}>
+                    <Box sx={styles.basket.quantity.contents}>
                         <Typography sx={styles.label} component="div" variant="button" align="center">Antal</Typography>
 
-                        <Box sx={styles.quantity.chooser}>
-                            <IconButton aria-label="remove" color="primary">
-                                <RemoveIcon onClick={() => itemQuantity > 0 && updateQuantity(itemQuantity - 1)} />
-                            </IconButton>
+                        <IconButton sx={styles.icon.remove} aria-label="remove" color="primary">
+                            <RemoveIcon onClick={() => itemQuantity > 0 && updateQuantity(itemQuantity - 1)} />
+                        </IconButton>
 
-                            <TextField
-                                sx={styles.quantity.textfield}
-                                id="product-quantity"
-                                type="number"
-                                size="small"
-                                inputProps={{ min: "1", max: "100", step: "1" }}
-                                value={itemQuantity}
-                                onChange={(e) => updateQuantity(e.target.value)}
-                                required
-                                variant="outlined"
-                            />
+                        <TextField
+                            sx={styles.basket.quantity.textfield}
+                            id="product-quantity"
+                            type="number"
+                            size="small"
+                            inputProps={{ min: "1", max: "100", step: "1" }}
+                            value={itemQuantity}
+                            onChange={(e) => updateQuantity(e.target.value)}
+                            required
+                            variant="outlined"
+                        />
 
-                            <IconButton aria-label="add" color="primary">
-                                <AddIcon onClick={() => updateQuantity(itemQuantity + 1)} />
-                            </IconButton>
-                        </Box>
+                        <IconButton sx={styles.icon.add} aria-label="add" color="primary">
+                            <AddIcon onClick={() => updateQuantity(itemQuantity + 1)} />
+                        </IconButton>
                     </Box>
-                </CardActions>
+                </Box>
 
-                <CardContent sx={styles.partTwo.cardContent}>
+                <CardContent sx={styles.basket.cardContent}>
                     <Typography sx={styles.label} component="div" variant="button" align="center" noWrap>Totalt</Typography>
                     <Typography component="div" variant="h4" noWrap>{itemQuantity * price} kr</Typography>
                 </CardContent>
             </Box>
+
+            <Divider sx={styles.divider.vertical} flexItem orientation="vertical" />
+            <Divider sx={styles.divider.horizontal} flexItem orientation="horizontal" />
+
+            <CardActions sx={styles.cardActions} onClick={() => updateQuantity(0)}>
+                <IconButton aria-label="clear" color="error">
+                    <ClearIcon />
+                </IconButton>
+            </CardActions>
         </Card>
     )
 };

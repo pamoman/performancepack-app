@@ -2,6 +2,11 @@
  * Checkout - Styles
  */
 
+const image = {
+    width: 175,
+    height: 175
+};
+
 const styles = {
     card: {
         display: "flex",
@@ -9,13 +14,13 @@ const styles = {
         backgroundColor: "background.dark",
         color: "primary.main",
     },
-    partOne: {
+    product: {
         flexGrow: 1,
         display: "flex",
         cardMedia: {
             order: { xs: 2, md: 1 },
-            width: 175,
-            height: 175,
+            width: image.width,
+            height: image.height,
             "& .basket-image": {
                 borderBottomLeftRadius: { xs: 10, md: "inherit" },
             }
@@ -27,22 +32,44 @@ const styles = {
             flexGrow: 1
         },
     },
-    partTwo: {
+    basket: {
         display: "flex",
-        cardActions: {
+        quantity: {
             display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: { xs: "flex-start", md: "center" },
             flexGrow: 1,
             p: 2,
+            contents: {},
+            textfield: {
+                backgroundColor: "primary.main",
+                "& input": {
+                    px: { xs: 0.5, md: 1 },
+                    fontWeight: "bold",
+                    textAlign: "center",
+                },
+            },
         },
         cardContent: {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            width: 175,
-            "& div": {
-                width: "100%",
-                textAlign: "center"
+            width: { xs: "inherit", md: image.width },
+        },
+    },
+    cardActions: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        cursor: "pointer",
+        "&:hover": {
+            backgroundColor: "error.main",
+            color: "secondary.main",
+            "& button": {
+                color: "primary.main"
             }
         },
     },
@@ -61,34 +88,36 @@ const styles = {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: { xs: "flex-end", md: "center" },
-            width: 175,
+            width: image.width,
             "& div": {
                 width: "100%",
                 textAlign: "center"
             }
+        },
+        basket: {
+            display: "flex"
         }
     },
-    quantity: {
-        chooser: {
-            display: "flex"
-        },
-        textfield: {
-            backgroundColor: "primary.main",
-            "& input": {
-                p: 1,
-                fontWeight: "bold",
-                textAlign: "center"
-            },
-        },
-    },
-    action: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        m: 2
-    },
     label: {
-        mb: 1
+        mb: 1,
+    },
+    icon: {
+        remove: {
+            pl: 0
+        },
+        add: {
+            pr: 0
+        }
+    },
+    divider: {
+        horizontal: theme => ({
+            display: { xs: "block", md: "none" },
+            borderColor: theme.palette.border.primary.main
+        }),
+        vertical: theme => ({
+            display: { xs: "none", md: "block" },
+            borderColor: theme.palette.border.primary.main
+        })
     },
 };
 

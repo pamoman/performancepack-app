@@ -5,9 +5,10 @@
 import { useState } from 'react';
 import { useBasket } from '@config/storage';
 import CheckoutItem from './CheckoutItem';
-import { Box, Typography, Card, CardHeader, Avatar, CardContent, CardMedia, CardActions, IconButton, TextField } from '@mui/material';
+import { Box, Typography, Divider, Card, CardHeader, Avatar, CardContent, CardMedia, CardActions, IconButton, TextField } from '@mui/material';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import ClearIcon from '@mui/icons-material/Clear';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import defaultSettings from './settings';
 import styles from './styles';
@@ -36,7 +37,7 @@ const CheckoutSummary = ({ basket = [], setBasket }) => {
                 }
             />
 
-            <Box sx={styles.partTwo}>
+            <Box sx={styles.summary.basket}>
                 <CardActions sx={styles.summary.cardActions}>
                 </CardActions>
 
@@ -45,6 +46,15 @@ const CheckoutSummary = ({ basket = [], setBasket }) => {
                     <Typography component="div" variant="h4" noWrap>{sum} kr</Typography>
                 </CardContent>
             </Box>
+
+            <Divider sx={styles.divider.vertical} flexItem orientation="vertical" />
+            <Divider sx={styles.divider.horizontal} flexItem orientation="horizontal" />
+
+            <CardActions sx={styles.cardActions} onClick={() => updateQuantity(0)}>
+                <IconButton aria-label="clear" color="error">
+                    <ClearIcon />
+                </IconButton>
+            </CardActions>
         </Card>
     )
 };
