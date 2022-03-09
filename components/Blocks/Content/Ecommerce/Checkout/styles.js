@@ -81,6 +81,12 @@ const styles = {
             },
         },
     },
+    action: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        m: 2
+    },
     label: {
         mb: 1
     },

@@ -46,7 +46,7 @@ const ProductCard = ({ basket, setBasket, settings, ...rest }) => {
             basket.push(newItem);
         }
 
-        setBasket([...basket]);
+        setBasket(basket);
         setQuantity(0);
     };
 

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Box, Typography, Card, CardHeader, CardContent, CardMedia, CardActions, IconButton, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import ClearIcon from '@mui/icons-material/Clear';
 import defaultSettings from './settings';
 import styles from './styles';
 
@@ -16,16 +17,17 @@ const CheckoutItem = ({ basket, setBasket, ...rest }) => {
 
     const updateQuantity = (qty) => {
         const parsedQty = parseInt(qty);
+        const itemIndex = basket.findIndex(item => item.id === id);
     
-        if (!isNaN(parsedQty)) {
-            const itemIndex = basket.findIndex(item => item.id === id);
-
-            if (itemIndex !== -1) {
+        if (!isNaN(parsedQty) && itemIndex > -1) {
+            if (parsedQty) {
                 basket[itemIndex].quantity = parsedQty;
-                
-                setItemQuantity(parsedQty);
-                setBasket([...basket]);
+            } else {
+                basket.splice(itemIndex, 1);
             }
+
+            setItemQuantity(parsedQty);
+            setBasket(basket);
         }
     };
 
@@ -53,6 +55,14 @@ const CheckoutItem = ({ basket, setBasket, ...rest }) => {
 
             <Box sx={styles.partTwo}>
                 <CardActions sx={styles.partTwo.cardActions}>
+                    <Box sx={styles.action}>
+                        <Typography sx={styles.label} component="div" variant="button" align="center">Radera</Typography>
+
+                        <IconButton aria-label="clear" color="error">
+                            <ClearIcon onClick={() => updateQuantity(0)} />
+                        </IconButton>
+                    </Box>
+
                     <Box sx={styles.quantity}>
                         <Typography sx={styles.label} component="div" variant="button" align="center">Antal</Typography>
 
