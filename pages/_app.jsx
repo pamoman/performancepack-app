@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SessionProvider } from 'next-auth/react';
 import { CookiesProvider } from 'react-cookie';
 import { ApolloProvider } from '@apollo/client';
-import { useApollo } from '@config/client';
+import { useApollo } from '@config/apollo';
 import { LayoutProvider, getLayout, MessageProvider } from '@components/Contexts';
 import { CacheProvider } from '@emotion/react';
 import createEmotionCache from '@styles/createEmotionCache';

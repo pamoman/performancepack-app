@@ -8,10 +8,9 @@ import { Box, Typography, Divider, Tooltip, Card, CardContent, CardMedia, CardAc
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ClearIcon from '@mui/icons-material/Clear';
-import defaultSettings from './settings';
 import styles from './styles';
 
-const CheckoutItem = ({ basket, setBasket, ...rest }) => {
+const CheckoutItem = ({ basket, setBasket, settings, ...rest }) => {
     const { id, quantity, name, description, price, url, alternativeText } = rest;
     const [ itemQuantity, setItemQuantity ] = useState(quantity);
 
@@ -34,17 +33,19 @@ const CheckoutItem = ({ basket, setBasket, ...rest }) => {
     return (
         <Card sx={styles.card}>
             <Box sx={styles.product}>
-                <CardMedia sx={styles.product.cardMedia}>
-                    <NextImage
-                        src={`${process.env.NEXT_PUBLIC_API_URL}${url}`}
-                        alt={alternativeText}
-                        className="basket-image"
-                        layout='responsive'
-                        objectFit='cover'
-                        width={1}
-                        height={1}
-                    />
-                </CardMedia>
+                {settings.show_image &&
+                    <CardMedia sx={styles.product.cardMedia}>
+                        <NextImage
+                            src={`${process.env.NEXT_PUBLIC_API_URL}${url}`}
+                            alt={alternativeText}
+                            className="basket-image"
+                            layout='responsive'
+                            objectFit='cover'
+                            width={1}
+                            height={1}
+                        />
+                    </CardMedia>
+                }
 
                 <CardContent sx={styles.product.cardContent}>
                     <Typography component="div" variant="h6">{name}</Typography>

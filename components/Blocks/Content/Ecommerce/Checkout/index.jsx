@@ -12,14 +12,15 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import defaultSettings from './settings';
 import styles from './styles';
 
-const Checkout = ({}) => {
+const Checkout = ({ userSettings = {} }) => {
+    const settings = { ...defaultSettings, ...userSettings };
     const [ basket, setBasket ] = useBasket();
 
     return (
         <Grid container justifyContent="center" alignItems="center" spacing={4}>
             {basket && basket.map(item => (
                 <Grid item xs={12}>
-                    <CheckoutItem basket={basket} setBasket={setBasket} {...item} />
+                    <CheckoutItem basket={basket} setBasket={setBasket} settings={settings} {...item} />
                 </Grid>
             ))}
 
@@ -31,8 +32,15 @@ const Checkout = ({}) => {
 };
 
 export const PamoCheckout = (data) => {
+    const { settings, ...rest } = data;
+
+    const props = {
+        userSettings: settings,
+        ...rest
+    };
+
     return (
-        <Checkout />
+        <Checkout {...props} />
     );
 };
 

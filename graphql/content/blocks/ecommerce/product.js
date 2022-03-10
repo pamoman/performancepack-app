@@ -5,6 +5,7 @@
 export const settings = `
     {
         show_price
+        show_image
         allow_purchase
     }
 `;

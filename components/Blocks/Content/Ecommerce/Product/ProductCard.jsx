@@ -119,16 +119,18 @@ const ProductCard = ({ basket, setBasket, settings, ...rest }) => {
                 }
             </Box>
             
-            <CardMedia sx={styles.cardMedia}>
-                <NextImage
-                    src={`${process.env.NEXT_PUBLIC_API_URL}${url}`}
-                    alt={alternativeText}
-                    layout='responsive'
-                    objectFit='cover'
-                    width={1}
-                    height={"100%"}
-                />
-            </CardMedia>
+            {settings.show_image &&
+                <CardMedia sx={styles.cardMedia}>
+                    <NextImage
+                        src={`${process.env.NEXT_PUBLIC_API_URL}${url}`}
+                        alt={alternativeText}
+                        layout='responsive'
+                        objectFit='cover'
+                        width={1}
+                        height={"100%"}
+                    />
+                </CardMedia>
+            }
         </Card>
     )
 };

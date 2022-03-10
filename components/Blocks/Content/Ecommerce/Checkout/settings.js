@@ -2,4 +2,6 @@
  * Checkout - Settings
  */
 
-export default {};
+export default {
+    show_image: true
+};

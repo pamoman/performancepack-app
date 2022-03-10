@@ -2,7 +2,7 @@
  * Page
  */
 
-import { initializeApollo, addApolloState } from '@config/client';
+import { initializeApollo, addApolloState } from '@config/apollo';
 import { useQuery } from '@apollo/client';
 import { PAGE, PAGES } from '@graphql/queries';
 import { Page } from '@components/Global';

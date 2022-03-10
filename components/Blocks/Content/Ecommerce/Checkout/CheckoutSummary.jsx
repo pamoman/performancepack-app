@@ -3,14 +3,9 @@
  */
 
 import { useState } from 'react';
-import { useBasket } from '@config/storage';
-import CheckoutItem from './CheckoutItem';
-import { Box, Typography, Divider, Tooltip, Card, CardHeader, Avatar, CardContent, CardMedia, CardActions, IconButton, TextField } from '@mui/material';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { Box, Typography, Divider, Tooltip, Card, CardHeader, Avatar, CardContent, CardActions, IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import defaultSettings from './settings';
 import styles from './styles';
 
 const calculateSum = (sum, item) => {
