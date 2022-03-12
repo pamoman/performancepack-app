@@ -3,6 +3,12 @@
  */
 
 const styles = {
+    loading: settings => ({
+        position: "absolute",
+        top: 0,
+        left: 0,
+        backgroundColor: settings?.background_color || "#000000",
+    }),
     streamContainer: (theme, settings) => ({
         backgroundColor: settings.background_color,
         position: "relative",

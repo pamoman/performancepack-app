@@ -2,17 +2,22 @@
  * Content Block - Stream
  */
 
+import { useState } from 'react';
 import ReactPlayer from 'react-player';
+import { Loading } from '@components/Shared';
 import defaultSettings from './settings';
 import { Grid, Typography } from '@mui/material';
 import styles from './styles';
 
 const Stream = ({ url, caption, userSettings = {} }) => {
     const settings = { ...defaultSettings, ...userSettings };
+    const [ loading, setLoading ] = useState(true);
 
     return (
         <Grid container justifyContent="center">
             <Grid sx={ (theme) => styles.streamContainer(theme, settings)} item xs={12}>
+                {loading && <Loading sx={styles.loading(settings)} />}
+
                 <ReactPlayer
                     className="react-player"
                     url={url}
@@ -20,6 +25,7 @@ const Stream = ({ url, caption, userSettings = {} }) => {
                     loop={settings.loop}
                     muted={settings.muted}
                     controls={settings.controls}
+                    onReady={() => setLoading(false)}
                     width="100%"
                     height="100%"
                 />
