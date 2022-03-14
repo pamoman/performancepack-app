@@ -2,26 +2,19 @@
  * Checkout - Summary
  */
 
-import { useState } from 'react';
 import { Box, Typography, Divider, Tooltip, Card, CardHeader, Avatar, CardContent, CardActions, IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import styles from './styles';
 
-const calculateSum = (sum, item) => {
-    return sum + item.quantity * item.price;
-};
-
-const CheckoutSummary = ({ basket = [], setBasket }) => {
-    const sum = basket.reduce(calculateSum, 0);
-
+const CheckoutSummary = ({ basket = [], setBasket, sum }) => {
     return (
         <Card sx={styles.card}>
             <CardHeader
                 sx={styles.cardHeader}
                 avatar={
                     <Avatar>
-                        <ShoppingBasketIcon fontSize="large" />
+                        <ShoppingBasketIcon color="secondary" fontSize="large" />
                     </Avatar>
                 }
                 title={
@@ -32,15 +25,10 @@ const CheckoutSummary = ({ basket = [], setBasket }) => {
                 }
             />
 
-            <Box sx={styles.checkout}>
-                <Box sx={styles.checkout.purchase}>
-                </Box>
-
-                <CardContent sx={styles.basket.cardContent}>
-                    <Typography sx={styles.label} component="div" variant="button" align="center" noWrap>Summa</Typography>
-                    <Typography component="div" variant="h4" noWrap>{sum} kr</Typography>
-                </CardContent>
-            </Box>
+            <CardContent sx={styles.basket.cardContent}>
+                <Typography sx={styles.label} component="div" variant="button" align="center" noWrap>Summa</Typography>
+                <Typography component="div" variant="h4" noWrap>{sum} kr</Typography>
+            </CardContent>
 
             <Divider sx={styles.divider.vertical} flexItem orientation="vertical" />
             <Divider sx={styles.divider.horizontal} flexItem orientation="horizontal" />

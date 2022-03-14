@@ -149,51 +149,6 @@ const overrides = {
                 },
             },
         },
-        MuiInputLabel: {
-            styleOverrides: {
-                root: {
-                    "&$focused:not($error)": {
-                        color: theme.palette.secondary.main,
-                    },
-                },
-            },
-        },
-        MuiFilledInput: {
-            styleOverrides: {
-                root: {
-                    "&$focused": {
-                        backgroundColor: theme.palette.formInput.background,
-                        borderRadius: "0.4rem",
-                    },
-                },
-                input: {
-                    borderRadius: "0.4rem",
-                    backgroundColor: theme.palette.formInput.background,
-                    "&$disabled": {
-                        borderRadius: 0,
-                        backgroundColor: theme.palette.formInput.disabled,
-                    },
-                    '&:hover:before': {
-                        backgroundColor: theme.palette.formInput.background,
-                        borderRadius: "0.4rem",
-                    },
-                },
-                underline: {
-                    '&:before': {
-                        borderBottom: `2px solid ${theme.palette.formInput.background}`
-                    },
-                    '&:after': {
-                        borderBottom: `2px solid ${theme.palette.border.secondary.main}`,
-                    },
-                    "&$disabled:before": {
-                        borderBottom: `2px solid ${theme.palette.formInput.disabled}`
-                    },
-                    '&:hover:before': {
-                        borderBottom: `2px solid ${theme.palette.formInput.background}`
-                    },
-                },
-            },
-        },
         MuiLink: {
             styleOverrides: {
                 root: {

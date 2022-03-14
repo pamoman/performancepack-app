@@ -5,6 +5,7 @@
 import { useState, useEffect } from "react";
 
 const BASKET = "basket";
+const LAST_ORDER = "lastOrder";
 
 const getStorageValue = (key, defaultValue) => {
     if (typeof window !== "undefined") {
@@ -33,4 +34,22 @@ export const useBasket = () => {
     }, [basket]);
 
     return [ basket, setBasket ];
+};
+
+export const useLastOrder = () => {
+    const [lastOrder, setLastOrderState] = useState(() => {
+        return getStorageValue(LAST_ORDER, {})
+    });
+
+    const setLastOrder = (order) => {
+        setLastOrderState({...order});
+    };
+
+    useEffect(() => {
+        const data = JSON.stringify(lastOrder);
+
+        localStorage.setItem(LAST_ORDER, data);
+    }, [lastOrder]);
+
+    return [ lastOrder, setLastOrder ];
 };

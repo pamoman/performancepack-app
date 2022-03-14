@@ -1,5 +1,5 @@
 /*
- * Graphql - Page Content
+ * Graphql - Queries
  */
 
 import { gql } from '@apollo/client';

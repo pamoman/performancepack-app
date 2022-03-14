@@ -18,7 +18,8 @@ const icons = (props) => ({
     fileLines: <FontAwesomeIcon icon={solid('file-lines')} {...props} />,
     houseCrack: <FontAwesomeIcon icon={solid('house-crack')} {...props} />,
     addressCard: <FontAwesomeIcon icon={solid('address-card')} {...props} />,
-    cartShopping: <FontAwesomeIcon icon={solid('cart-shopping')} {...props} />
+    cartShopping: <FontAwesomeIcon icon={solid('cart-shopping')} {...props} />,
+    shop: <FontAwesomeIcon icon={solid('shop')} {...props} />,
 });
 
 const FaIcon = ({ name = "file-lines", size = "lg", ...rest }) => {

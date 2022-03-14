@@ -63,12 +63,16 @@ const styles = {
             width: { xs: "inherit", md: image.width },
         },
     },
-    checkout: {
-        display: "flex",
-        purchase: {
-            display: "flex",
-            flexGrow: 1,
-            p: 2,
+    form: {
+        CardContent: {},
+        textfield: {
+            backgroundColor: "primary.main",
+        },
+        orderButton: {
+            backgroundColor: "button.secondary.background.light",
+            ":hover": {
+                backgroundColor: "button.secondary.background.main",
+            }
         },
     },
     cardActions: {
@@ -105,6 +109,10 @@ const styles = {
             display: { xs: "none", md: "block" },
             borderColor: theme.palette.border.primary.main
         })
+    },
+    paymentType: {
+        backgroundColor: "background.dark",
+        color: "primary.main",
     },
 };
 
