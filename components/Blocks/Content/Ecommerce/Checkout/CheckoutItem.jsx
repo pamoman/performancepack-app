@@ -4,14 +4,16 @@
 
 import NextImage from 'next/image';
 import { useState } from 'react';
+import { useBasket } from '@components/Contexts';
 import { Box, Typography, Divider, Tooltip, Card, CardContent, CardMedia, CardActions, IconButton, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ClearIcon from '@mui/icons-material/Clear';
 import styles from './styles';
 
-const CheckoutItem = ({ basket, setBasket, settings, ...rest }) => {
+const CheckoutItem = ({ settings, ...rest }) => {
     const { id, quantity, name, description, price, url, alternativeText } = rest;
+    const { basket, setBasket } = useBasket();
     const [ itemQuantity, setItemQuantity ] = useState(quantity);
 
     const updateQuantity = (qty) => {
@@ -21,11 +23,12 @@ const CheckoutItem = ({ basket, setBasket, settings, ...rest }) => {
         if (!isNaN(parsedQty) && itemIndex > -1) {
             if (parsedQty) {
                 basket[itemIndex].quantity = parsedQty;
+
+                setItemQuantity(parsedQty);
             } else {
                 basket.splice(itemIndex, 1);
             }
 
-            setItemQuantity(parsedQty);
             setBasket(basket);
         }
     };

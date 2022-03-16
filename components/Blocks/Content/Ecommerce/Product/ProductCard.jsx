@@ -4,21 +4,21 @@
 
 import { useState } from 'react';
 import NextImage from 'next/image';
-import { useMessage } from '@components/Contexts';
+import { useBasket, useMessage } from '@components/Contexts';
 import { Box, Card, CardHeader, CardContent, CardMedia, CardActions, Typography, TextField, Button, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import styles from './styles';
 
-const ProductCard = ({ basket, setBasket, settings, ...rest }) => {
+const ProductCard = ({ settings, ...rest }) => {
     const { id, attributes: product } = rest;
     const { name, description, price, image: { data: { attributes: image } } } = product || {};
     const { alternativeText, formats } = image;
     const { url } = formats?.medium || formats?.small;
     const [ quantity, setQuantity ] = useState(0);
-    const messageContext = useMessage();
-    const { setMessage } = messageContext;
+    const { basket, setBasket } = useBasket();
+    const { setMessage } = useMessage();
 
     const updateQuantity = (qty) => {
         const parsedQty = parseInt(qty);

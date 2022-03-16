@@ -3,14 +3,15 @@
  */
 
 import { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+import { useBasket } from '@components/Contexts';
 import { useOrder } from '@graphql/mutations';
-import { Grid, Box, Typography, Card, CardHeader, Avatar, CardContent, FormControl, Button, TextField } from '@mui/material';
+import { Grid, Box, Typography, Card, CardHeader, Avatar, CardContent, Button, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import styles from './styles';
 
-const CheckoutForm = ({ basket = [], setBasket, sum, setOrdered }) => {
+const CheckoutForm = ({ sum, setOrdered }) => {
+    const { basket } = useBasket();
     const [ order, setOrder ] = useOrder();
     const [ firstname, setFirstname ] = useState("");
     const [ lastname, setLastname ] = useState("");

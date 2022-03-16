@@ -2,12 +2,15 @@
  * Checkout - Summary
  */
 
-import { Box, Typography, Divider, Tooltip, Card, CardHeader, Avatar, CardContent, CardActions, IconButton } from '@mui/material';
+import { useBasket } from '@components/Contexts';
+import { Typography, Divider, Tooltip, Card, CardHeader, Avatar, CardContent, CardActions, IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import styles from './styles';
 
-const CheckoutSummary = ({ basket = [], setBasket, sum }) => {
+const CheckoutSummary = ({ sum }) => {
+    const { basket, setBasket } = useBasket();
+
     return (
         <Card sx={styles.card}>
             <CardHeader
@@ -21,7 +24,7 @@ const CheckoutSummary = ({ basket = [], setBasket, sum }) => {
                     <Typography component="div" variant="h4">Din Kundvagn</Typography>
                 }
                 subheader={
-                    <Typography component="div" variant="subtitle">Antal Produkter: {basket.length}</Typography>
+                    <Typography component="div" variant="subtitle">Antal Produkter: {basket && basket.length}</Typography>
                 }
             />
 

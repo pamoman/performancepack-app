@@ -33,7 +33,7 @@ export const useBasket = () => {
         localStorage.setItem(BASKET, data);
     }, [basket]);
 
-    return [ basket, setBasket ];
+    return { basket, setBasket };
 };
 
 export const useLastOrder = () => {
@@ -51,5 +51,5 @@ export const useLastOrder = () => {
         localStorage.setItem(LAST_ORDER, data);
     }, [lastOrder]);
 
-    return [ lastOrder, setLastOrder ];
+    return { lastOrder, setLastOrder };
 };
