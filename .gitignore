@@ -35,4 +35,6 @@ yarn-error.log*
 .vercel
 
 # Pamo
-/data
+/data/Global/company.json
+/data/Global/globals.json
+/data/Global/nav-tree.json
