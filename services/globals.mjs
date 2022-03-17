@@ -17,6 +17,7 @@ dotenv.config();
 const getGlobals = async () => {
     const dataPath = process.env.GLOBAL_DATA_PATH;
     const publicFolder = "./public";
+    const iconFolder = "./public/icons";
     const globalsPath = `${dataPath}/globals.json`;
     const manifestPath = `${publicFolder}/manifest.json`;
     const finished = () => console.info("\nFinished downloading global data!\n");
@@ -57,12 +58,12 @@ const getGlobals = async () => {
         try {
             await streamPipeline(
                 res.body,
-                fs.createWriteStream(`./public/${logoName}`)
+                fs.createWriteStream(`${iconFolder}/${logoName}`)
             );
         } catch (err) {
             throw new Error(`Unexpected write error: ${err}`)
         } finally {
-            console.info(`Logo ${logoName} copied to the ${publicFolder} folder`);
+            console.info(`Logo ${logoName} copied to the ${iconFolder} folder`);
         }
     }
 
@@ -96,12 +97,12 @@ const getGlobals = async () => {
                 try {
                     await streamPipeline(
                         res.body,
-                        fs.createWriteStream(`./public/${imageName}`)
+                        fs.createWriteStream(`${iconFolder}/${imageName}`)
                     );
                 } catch (err) {
                     throw new Error(`Unexpected write error: ${err}`)
                 } finally {
-                    console.info(`Images ${imageName} copied to the ${publicFolder} folder`);
+                    console.info(`Images ${imageName} copied to the ${iconFolder} folder`);
                 }
         
                 processed++;

@@ -11,15 +11,16 @@ import styles from './styles';
 
 const ZeusHeader = ({ title, logo, links }) => {
     const layout = useLayout();
+    const logoSrc = logo?.data?.attributes?.name ? `/icons/${logo?.data?.attributes?.name}` : null;
 
     return (
         <Box sx={theme => styles.container(theme, layout)} component="header">
             <Box sx={theme => styles.header(theme, layout)}>
                 <Link sx={styles.link} href="/">
                     <Grid sx={styles.heading} container direction="row" justifyContent="flex-start" alignItems="center" spacing={1, 0}>
-                        {logo &&
+                        {logoSrc &&
                             <Grid item sx={styles.siteLogo}>
-                                <Image src={`/${logo.data.attributes.name}`} alt={title} width={50} height={50} />
+                                <Image src={logoSrc} alt={title} width={50} height={50} />
                             </Grid>
                         }
                             <Grid item>

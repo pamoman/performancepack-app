@@ -3,7 +3,7 @@
  */
 
 export const settings = `
-    {
+    settings {
         show_price
         show_image
         allow_purchase
@@ -31,6 +31,6 @@ export default `
                 }
             }
         }
-        settings ${settings}
+        ${settings}
     }
 `;

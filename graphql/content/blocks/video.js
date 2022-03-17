@@ -3,7 +3,7 @@
  */
 
 export const settings = `
-    {
+    settings {
         autoplay
         muted
         controls
@@ -26,6 +26,6 @@ export default `
                 }
             }
         }
-        settings ${settings}
+        ${settings}
     }
 `;

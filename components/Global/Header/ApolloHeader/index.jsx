@@ -20,6 +20,7 @@ const ApolloHeader = ({ title, logo, links = [], company, userSettings = {} }) =
     const [open, setOpen] = useState(false);
     const layout = useLayout();
     const { location_url, mobile, email, email_subject, email_body } = company;
+    const logoSrc = logo?.data?.attributes?.name ? `/icons/${logo?.data?.attributes?.name}` : null;
 
     const toggleOpen = (open) => (e) => {
         if (e.type === 'keydown' && (e.key === 'Tab' || e.key === 'Shift')) {
@@ -51,11 +52,11 @@ const ApolloHeader = ({ title, logo, links = [], company, userSettings = {} }) =
                     <Box sx={styles.logoDesktop}>   
                         <Link href="/" passHref>
                             <Box sx={styles.logotext}>
-                                <Box sx={styles.logo}>
-                                    {logo?.data?.attributes?.name &&
-                                        <Image className="logo-image" src={`/${logo?.data.attributes.name}`} alt={title} width={50} height={50} />
-                                    }
-                                </Box>
+                                {logoSrc &&
+                                    <Box sx={styles.logo}>
+                                        <Image className="logo-image" src={logoSrc} alt={title} width={50} height={50} />
+                                    </Box>
+                                }
 
                                 <Typography
                                     component="h6"
@@ -72,11 +73,11 @@ const ApolloHeader = ({ title, logo, links = [], company, userSettings = {} }) =
                     <Box sx={styles.logoMobile}>
                         <Link href="/" passHref>
                             <Box sx={styles.logotext}>
-                                <Box sx={styles.logo}>
-                                    {logo?.data?.attributes?.name &&
-                                        <Image src={`/${logo?.data.attributes.name}`} alt={title} width={50} height={50} />
-                                    }
-                                </Box>
+                                {logoSrc &&
+                                    <Box sx={styles.logo}>
+                                        <Image src={logoSrc} alt={title} width={50} height={50} />
+                                    </Box>
+                                }
 
                                 <Typography
                                     component="h6"

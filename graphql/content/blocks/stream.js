@@ -3,7 +3,7 @@
  */
 
 export const settings = `
-    {
+    settings {
         autoplay
         muted
         controls
@@ -19,6 +19,6 @@ export default `
         url
         alternative_text
         caption
-        settings ${settings}
+        ${settings}
     }
 `;

@@ -3,7 +3,7 @@
  */
 
 export const settings = `
-    {
+    settings {
         show_head
         show_name
         table_size
@@ -25,6 +25,6 @@ export default `
                 value
             }
         }
-        settings ${settings}
+        ${settings}
     }
 `;

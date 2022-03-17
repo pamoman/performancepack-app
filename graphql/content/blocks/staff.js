@@ -3,7 +3,7 @@
  */
 
 export const settings = `
-    {
+    settings {
         show_name
         show_email
         show_image
@@ -43,6 +43,6 @@ export default `
                 }
             }
         }
-        settings ${settings}
+        ${settings}
     }
 `;

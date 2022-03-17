@@ -2,17 +2,21 @@
  * Graphql - Map
  */
 
-export const settings = `
+export const mapSettings = `
     {
         zoom
         size
     }
 `;
 
+export const settings = `
+    settings ${mapSettings}
+`;
+
 export default `
     ... on ComponentContentMap {
         lat
         lng
-        settings ${settings}
+        ${settings}
     }
 `;

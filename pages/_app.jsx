@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { SessionProvider } from 'next-auth/react';
 import { CookiesProvider } from 'react-cookie';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '@config/apollo';
@@ -27,21 +26,19 @@ const App = (props) => {
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <GlobalStyles styles={globalStyle} />
-                <SessionProvider session={session}>
-                    <CookiesProvider>
-                        <ApolloProvider client={apolloClient}>
-                            <MessageProvider value={{ message, setMessage }}>
-                                <BasketProvider value={{ basket, setBasket }}>
-                                    <LayoutProvider value={layout}>
-                                        <Layout>
-                                            <Component {...rest} />
-                                        </Layout>
-                                    </LayoutProvider>
-                                </BasketProvider>
-                            </MessageProvider>
-                        </ApolloProvider>
-                    </CookiesProvider>
-                </SessionProvider>
+                <CookiesProvider>
+                    <ApolloProvider client={apolloClient}>
+                        <MessageProvider value={{ message, setMessage }}>
+                            <BasketProvider value={{ basket, setBasket }}>
+                                <LayoutProvider value={layout}>
+                                    <Layout>
+                                        <Component {...rest} />
+                                    </Layout>
+                                </LayoutProvider>
+                            </BasketProvider>
+                        </MessageProvider>
+                    </ApolloProvider>
+                </CookiesProvider>
             </ThemeProvider>
         </CacheProvider>
     );

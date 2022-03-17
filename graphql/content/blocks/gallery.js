@@ -3,7 +3,7 @@
  */
 
 export const settings = `
-    {
+    settings {
         show_caption
     }
 `;
@@ -51,6 +51,6 @@ export default `
             }
         }
         ${gallerySettings}
-        settings ${settings}
+        ${settings}
     }
 `;

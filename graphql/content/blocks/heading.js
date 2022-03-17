@@ -3,7 +3,7 @@
  */
 
 export const settings = `
-    {
+    settings {
         component
         variant
     }
@@ -12,6 +12,6 @@ export const settings = `
 export default `
     ... on ComponentContentHeading {
         title
-        settings ${settings}
+        ${settings}
     }
 `;

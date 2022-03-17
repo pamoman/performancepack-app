@@ -3,7 +3,7 @@
  */
 
 export const settings = `
-    {
+    settings {
         show_caption
     }
 `;
@@ -20,6 +20,6 @@ export default `
                 }
             }
         }
-        settings ${settings}
+        ${settings}
     }
 `;

@@ -1,14 +1,14 @@
 {
   "name": "perfpack-app",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "npm run getGlobals && next dev",
-    "build": "npm run getGlobals && next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start -p 3028",
     "lint": "next lint",
-    "getGlobals": "node ./services/globals.mjs",
-    "rebuild": "npm run build && pm2 restart App-name"
+    "predev": "node ./services/globals.mjs",
+    "prebuild": "node ./services/globals.mjs"
   },
   "dependencies": {
     "@apollo/client": "^3.5.9",
@@ -24,7 +24,6 @@
     "@mui/icons-material": "^5.4.2",
     "@mui/lab": "^5.0.0-alpha.70",
     "@mui/material": "^5.4.3",
-    "axios": "^0.26.1",
     "babel-plugin-macros": "^3.1.0",
     "dotenv": "^16.0.0",
     "google-map-react": "^2.1.10",

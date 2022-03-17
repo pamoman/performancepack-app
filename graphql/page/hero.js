@@ -3,7 +3,7 @@
  */
 
 export const settings = `
-    {
+    settings {
         desktop_postion_x
         desktop_position_y
         mobile_position_x
@@ -32,6 +32,6 @@ export default `
             label
             target
         }
-        settings ${settings}
+        ${settings}
     }
 `;

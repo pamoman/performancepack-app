@@ -2,10 +2,10 @@
  * Graphql - Company
  */
 
-import { settings as mapSettings } from './map';
+import { mapSettings } from './map';
 
 export const settings = `
-    {
+    settings {
         show_name
         show_location
         show_address
@@ -18,6 +18,6 @@ export const settings = `
 
 export default `
     ... on ComponentContentCompany {
-        settings ${settings}
+        ${settings}
     }
 `;

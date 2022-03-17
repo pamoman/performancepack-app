@@ -3,7 +3,7 @@
  */
 
 export const settings = `
-    {
+    settings {
         interval
         autoplay
         dots
@@ -23,6 +23,6 @@ export default `
                 }
             }
         }
-        settings ${settings}
+        ${settings}
     }
 `;
