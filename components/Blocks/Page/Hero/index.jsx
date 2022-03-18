@@ -5,6 +5,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import defaultsettings from './settings';
+import utils from '@utils';
 import { Grid, Box, Typography, Button } from '@mui/material';
 import styles from './styles';
 
@@ -36,11 +37,12 @@ const Hero = ({ heading, variant, formats, alternativeText, links, userSettings 
                     <Grid item>
                         <Grid sx={styles.buttonContainer} container spacing={2}>
                             {links.map((link, i) => {
-                                const { href, label, target } = link;
+                                const { path, label, location } = link;
+                                const target = utils.getTarget(location);
 
                                 return (
                                     <Grid key={`hero-link-${i}`} sx={styles.button} item>
-                                        <Link href={href} passHref>
+                                        <Link href={path} passHref>
                                             <Button target={target} color="primary" variant="contained">
                                                 <Typography variant="button" display="block" noWrap>{label}</Typography>
                                             </Button>

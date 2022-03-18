@@ -23,11 +23,11 @@ const getNextBranch = (branch, node) => {
         return branch[existing].children;
     } else {
         const child = {
-            node,
-            path: null,
             label: node.charAt(0).toUpperCase() + node.slice(1),
+            path: null,
             icon: null,
             target: "_self",
+            node,
             children: []
         };
 
@@ -45,7 +45,7 @@ const getNextBranch = (branch, node) => {
  * otherwise find the parent branch and give it a child (WTF!)
  */
 const addToTree = (link, branch) => {
-    const { path, ...rest } = link;
+    const { label, path, icon, target } = link;
 
     const nodes = pathToArray(path);
 
@@ -54,9 +54,11 @@ const addToTree = (link, branch) => {
 
         if (isChild) {
             const child = {
-                node,
+                label,
                 path,
-                ...rest,
+                icon,
+                target,
+                node,
                 children: []
             };
 
@@ -74,8 +76,6 @@ const createLinkList = (links) => {
     return links.map(link => {
         const { label, path, icon, location } = link;
 
-        const pathList = pathToArray(path);
-
         let target;
 
         switch (location) {
@@ -91,9 +91,8 @@ const createLinkList = (links) => {
         }
 
         return {
-            node: pathList.slice(-1)[0],
-            path,
             label,
+            path,
             icon,
             target
         }

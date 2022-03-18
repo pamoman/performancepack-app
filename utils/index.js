@@ -3,6 +3,16 @@
  */
 
 export default {
+    getTarget: (location) => {
+        switch (location) {
+            case "internal":
+                return "_self";
+            case "external":
+                return "_blank";
+            default:
+                return "_self";
+        }
+    },
     getIconType: (type) => {
         switch (type) {
             case "light":

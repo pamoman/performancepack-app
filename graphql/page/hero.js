@@ -28,9 +28,10 @@ export default `
             variant
         }
         links {
-            href
             label
-            target
+            path
+            icon
+            location
         }
         ${settings}
     }
