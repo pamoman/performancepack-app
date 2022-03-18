@@ -28,6 +28,9 @@ const styles = {
         "& .MuiPaper-root": {
             color: "iconButton.primary.main",
             backgroundColor: "iconButton.primary.background.main",
+            "& ul": {
+                p: 0
+            },
         }
     },
     menuItem: {

@@ -17,8 +17,7 @@ const PamoNavBottom = ({ links = [], ...props }) => {
     return (
         <BottomNavigation sx={styles.bottomNav} {...props}>
             {links.map((link, i) => {
-                const { path, label, icon } = link;
-                const { name: IconName } = icon || {};
+                const { path, label, icon, target } = link;
 
                 return (
                     <BottomNavigationAction
@@ -29,7 +28,8 @@ const PamoNavBottom = ({ links = [], ...props }) => {
                         href={path}
                         passHref
                         label={label}
-                        icon={<Icon name={IconName} size='xl' />}
+                        target={target}
+                        icon={<Icon name={icon} size='xl' />}
                     />
                 )
             })}

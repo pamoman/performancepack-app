@@ -19,6 +19,7 @@ const getGlobals = async () => {
     const publicFolder = "./public";
     const iconFolder = "./public/icons";
     const globalsPath = `${dataPath}/globals.json`;
+    const navTreePath = `${dataPath}/nav-tree.json`;
     const manifestPath = `${publicFolder}/manifest.json`;
     const finished = () => console.info("\nFinished downloading global data!\n");
 
@@ -28,7 +29,7 @@ const getGlobals = async () => {
     const resJson = await res.json();
 
     const data = resJson.data.attributes;
-    const { logo, pwa } = data.header;
+    const { nav, pwa, logo } = data.header;
 
     /*
      * Write globals data to a local json file
@@ -42,29 +43,22 @@ const getGlobals = async () => {
             console.info(`Global data written to file ${globalsPath}`);
         },
     );
-    
+
     /*
-     * Get site logo 
+     * Get site nav
      */
-    if (logo && logo.data) {
-        const logoUrl = logo.data.attributes.url;
-        const logoName = logo.data.attributes.name;
-    
-        const streamPipeline = promisify(pipeline);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${logoUrl}`);
+    if (nav) {
+        const navTree = createNavTree(nav);
 
-        if (!res.ok) throw new Error(`Unexpected response ${res.statusText}`);
+        fs.writeFile(
+            navTreePath,
+            JSON.stringify(navTree, null, 4),
+            err => {
+                if (err) throw err;
 
-        try {
-            await streamPipeline(
-                res.body,
-                fs.createWriteStream(`${iconFolder}/${logoName}`)
-            );
-        } catch (err) {
-            throw new Error(`Unexpected write error: ${err}`)
-        } finally {
-            console.info(`Logo ${logoName} copied to the ${iconFolder} folder`);
-        }
+                console.info(`Navigation tree written to file ${navTreePath}\n`);
+            },
+        );
     }
 
     /*
@@ -109,8 +103,32 @@ const getGlobals = async () => {
         
                 processed == icons.length && finished();
             });
-        };
+        }
     };
+
+    /*
+     * Get site logo 
+     */
+    if (logo && logo.data) {
+        const logoUrl = logo.data.attributes.url;
+        const logoName = logo.data.attributes.name;
+    
+        const streamPipeline = promisify(pipeline);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${logoUrl}`);
+
+        if (!res.ok) throw new Error(`Unexpected response ${res.statusText}`);
+
+        try {
+            await streamPipeline(
+                res.body,
+                fs.createWriteStream(`${iconFolder}/${logoName}`)
+            );
+        } catch (err) {
+            throw new Error(`Unexpected write error: ${err}`)
+        } finally {
+            console.info(`Logo ${logoName} copied to the ${iconFolder} folder`);
+        }
+    }
 };
 
 /*
@@ -142,43 +160,12 @@ const getCompanyInfo = async () => {
 };
 
 /*
- * Get Navigation Links
- */
-const getNavLinks = async () => {
-    const dataPath = process.env.GLOBAL_DATA_PATH;
-    const navTreePath = `${dataPath}/nav-tree.json`;
-
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/${process.env.PAGES_API_ROUTE}`;
-
-    const res = await fetch(url);
-    const resJson = await res.json();
-
-    const data = resJson?.data;
-
-    const navTree = createNavTree(data);
-
-    /*
-     * Write navigation tree to a local json file
-     */
-    fs.writeFile(
-        navTreePath,
-        JSON.stringify(navTree, null, 4),
-        err => {
-            if (err) throw err;
-
-            console.info(`Navigation tree written to file ${navTreePath}\n`);
-        },
-    );
-};
-
-/*
  * Main function to call on load
  */
 const main = async () => {
 	try {
 		await getGlobals();
         await getCompanyInfo();
-        await getNavLinks();
 	} catch (err) {
 		throw new Error(err)
 	}

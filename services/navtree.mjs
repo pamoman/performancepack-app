@@ -23,10 +23,11 @@ const getNextBranch = (branch, node) => {
         return branch[existing].children;
     } else {
         const child = {
-            label: node.charAt(0).toUpperCase() + node.slice(1),
-            path: null,
-            icon: null,
             node,
+            path: null,
+            label: node.charAt(0).toUpperCase() + node.slice(1),
+            icon: null,
+            target: "_self",
             children: []
         };
 
@@ -44,7 +45,7 @@ const getNextBranch = (branch, node) => {
  * otherwise find the parent branch and give it a child (WTF!)
  */
 const addToTree = (link, branch) => {
-    const { label, path, icon } = link;
+    const { path, ...rest } = link;
 
     const nodes = pathToArray(path);
 
@@ -53,10 +54,9 @@ const addToTree = (link, branch) => {
 
         if (isChild) {
             const child = {
-                label,
-                path,
-                icon,
                 node,
+                path,
+                ...rest,
                 children: []
             };
 
@@ -72,15 +72,30 @@ const addToTree = (link, branch) => {
  */
 const createLinkList = (links) => {
     return links.map(link => {
-        const { label, path, icon } = link.attributes;
+        const { label, path, icon, location } = link;
 
         const pathList = pathToArray(path);
 
+        let target;
+
+        switch (location) {
+            case "internal":
+                target = "_self";
+                break;
+            case "external":
+                target = "_blank";
+                break;
+            default:
+                target = "_self"
+                break;
+        }
+
         return {
-            label,
-            path,
-            icon,
             node: pathList.slice(-1)[0],
+            path,
+            label,
+            icon,
+            target
         }
     });
 };

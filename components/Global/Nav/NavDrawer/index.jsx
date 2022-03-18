@@ -20,7 +20,7 @@ const isActive = (href) => {
 };
 
 const NavList = ({ link, sub = false }) => {
-    const { node = "", path = "", label = node, icon, children = [] } = link;
+    const { node = "", path = "", label = node, icon, target, children = [] } = link;
 
     const [open, setOpen] = useState(true);
 
@@ -36,7 +36,7 @@ const NavList = ({ link, sub = false }) => {
                         href={path}
                         passHref
                     >
-                        <Button>
+                        <Button target={target}>
                             <NavListItem path={path} label={label} icon={icon} />
                         </Button>
                     </NextLink>
@@ -77,12 +77,11 @@ const NavListCollapsed = ({ index, open, children }) => {
 
 const NavListItem = ({ path, label, icon }) => {
     const active = isActive(path);
-    const { name: IconName } = icon || {};
 
     return (
         <>
             <ListItemIcon className={`${active}`} sx={styles.navList.link.icon}>
-                <Icon name={IconName} size='xl' />
+                <Icon name={icon} size='xl' />
             </ListItemIcon>
 
             <ListItemText className={`${active}`} sx={styles.navList.link.text}>

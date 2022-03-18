@@ -16,10 +16,10 @@ const isActive = (href) => {
 const PamoNavLink = ({ links = [], ...props }) => (
     <Box sx={styles.navLink} {...props}>
         {links.map((link, i) => {
-            const { path, label } = link;
+            const { path, label, target } = link;
 
             return (
-                <PamoLink key={`nav-link-${i}`} className={isActive(path)} href={path} passHref>
+                <PamoLink key={`nav-link-${i}`} className={isActive(path)} href={path} target={target} passHref>
                     {label}
                 </PamoLink>
             )

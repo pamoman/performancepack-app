@@ -15,7 +15,7 @@ const isActive = (href) => {
     return router.asPath === href ? "active" : null;
 };
 
-const NavMenu = ({ node = "", path = "", label = node, children = [] }) => {
+const NavMenu = ({ node = "", path = "", label = node, target, children = [] }) => {
     const active = isActive(path);
     const popupState = usePopupState({
         variant: 'popover',
@@ -30,6 +30,7 @@ const NavMenu = ({ node = "", path = "", label = node, children = [] }) => {
                         <Button
                             className={active}
                             sx={styles.navMenu.button}
+                            target={target}
                             {...bindHover(popupState)}
                         >
                             {label}
@@ -53,6 +54,7 @@ const NavMenu = ({ node = "", path = "", label = node, children = [] }) => {
                         <Button
                             className={active}
                             sx={styles.navMenu.button}
+                            target={target}
                         >
                             {label}
                         </Button>
@@ -89,14 +91,14 @@ const NavSubMenu = ({ links, popupState, av = "bottom", ah = "left", tv = "top",
             transformOrigin={{ vertical: tv, horizontal: th }}
         >
             {links && links.length > 0 && links.map((link, i) => {
-                const { node, path, label = node, children } = link || {};
+                const { node, path, label = node, target, children } = link || {};
 
                 return (
                     <Box key={`nav-sub-menu-${node}-${i}`}>
                         {children && children.length > 0 ?
                             path ?
                                 <NextLink href={path} passHref>
-                                    <MenuItem sx={styles.menuItem} {...bindHover(subPopupState)}>{label}</MenuItem>
+                                    <MenuItem sx={styles.menuItem} {...bindHover(subPopupState)} component={Button}>{label}</MenuItem>
                                 </NextLink>
 
                                 :
@@ -107,7 +109,7 @@ const NavSubMenu = ({ links, popupState, av = "bottom", ah = "left", tv = "top",
 
                             path ?
                                 <NextLink href={path} passHref>
-                                    <MenuItem sx={styles.menuItem}>{label}</MenuItem>
+                                    <MenuItem sx={styles.menuItem} target={target} component={Button}>{label}</MenuItem>
                                 </NextLink>
 
                             :
@@ -129,10 +131,10 @@ const PamoNavMenu = ({ links = [], ...props }) => {
     return (
         <Box sx={styles.navMenu} {...props}>
             {links.map(link => {
-                const { node, path, label = node, children } = link;
+                const { node, path, label = node, target, children } = link;
 
                 return (
-                    <NavMenu node={node} path={path} label={label} children={children} />
+                    <NavMenu node={node} path={path} label={label} target={target} children={children} />
                 )
             })}
         </Box>
